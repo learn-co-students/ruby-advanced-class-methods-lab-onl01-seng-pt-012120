@@ -13,7 +13,11 @@ class Song
   end
   
   def self.create
-    @@all << self
-    save
+    # the following do not pass the tests
+    # @@all << self.new 
+    # ============
+    self.class.all << self.new
+    # ============
+    # save
   end
 end
