@@ -47,14 +47,31 @@ end
   
   
   def self.new_from_filename(name)
-    split_string = name.split('-')
-    artist = split_string[0]
-    song = split_string[1]
-    Song.new
+    split_string = name.split(' - ')
+    artist_name = split_string[0]
+    song_name = split_string[1].gsub!('.mp3', '')
+    song = Song.new
+    song.name = song_name
+    song.artist_name = artist_name
+    song
   end
   
   
+  def self.create_from_filename(name)
+    split_string = name.split(' - ')
+    artist_name = split_string[0]
+    song_name = split_string[1].gsub!('.mp3', '')
+    song = Song.create
+    song.name = song_name
+    song.artist_name = artist_name
+    song
+end
 
+  
+  
+  def self.destroy_all
+    @@all.clear
+  end
   
 end
 
